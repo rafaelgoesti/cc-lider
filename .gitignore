@@ -1,0 +1,22 @@
+# Arquivos do Django
+*.pyc
+*~
+__pycache__/
+db.sqlite3
+.env
+.env.dev
+.DS_Store
+
+# Virtualenv
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+
+# Arquivos estáticos coletados
+staticfiles/
+
+# Arquivos de mídia
+media/

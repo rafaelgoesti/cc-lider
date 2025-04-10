@@ -1,0 +1,343 @@
+:root {
+  --primary-color: #057A55;
+  --secondary-color: #607d8b;
+  --accent-color: #ff5722;
+  --light-color: #f5f5f5;
+  --dark-color: #212121;
+}
+
+/* Base Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+  color: var(--dark-color);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+/* Navigation */
+.navbar {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, var(--primary-color), #0a9d6e);
+  padding: 0.8rem 0;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand i {
+  margin-right: 0.5rem;
+}
+
+/* Section Titles */
+.section-title {
+  color: var(--primary-color);
+  border-left: 4px solid var(--accent-color);
+  padding-left: 12px;
+  margin: 2rem 0 1.5rem;
+  font-size: 1.8rem;
+}
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 1.5rem;
+  font-weight: 500;
+  border-bottom: none;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Tables - Mobile First Approach */
+.table-container {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  background: white;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.schedule-table th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+}
+
+.schedule-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+
+.schedule-table tr:last-child td {
+  border-bottom: none;
+}
+
+.schedule-table tr:hover {
+  background-color: rgba(5, 122, 85, 0.05);
+}
+
+/* Class Cards */
+.class-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  border-left: 4px solid var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.class-card:hover {
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+}
+
+.class-title {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.class-teacher {
+  color: var(--secondary-color);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.class-time {
+  display: flex;
+  align-items: center;
+  color: #6c757d;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.class-time i {
+  margin-right: 0.5rem;
+  color: var(--primary-color);
+}
+
+.class-room {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: #e9ecef;
+}
+
+.class-divider {
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0.8rem 0;
+}
+
+/* Buttons */
+.btn-custom {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #046144;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.footer {
+  background-color: var(--dark-color);
+  color: white;
+  padding: 2rem 0;
+  margin-top: 3rem;
+}
+
+.social-icons {
+  font-size: 1.5rem;
+}
+
+.social-icons a {
+  color: white;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  /* Navigation */
+  .navbar-brand {
+    font-size: 1.3rem;
+  }
+  
+  /* Tables */
+  .table-container {
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+  
+  .schedule-table {
+    display: block;
+  }
+  
+  .schedule-table thead {
+    display: none;
+  }
+  
+  .schedule-table tbody, 
+  .schedule-table tr, 
+  .schedule-table td {
+    display: block;
+    width: 100%;
+  }
+  
+  .schedule-table tr {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: white;
+  }
+  
+  .schedule-table td {
+    padding: 1rem;
+    text-align: right;
+    position: relative;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .schedule-table td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+  }
+  
+  .schedule-table td:last-child {
+    border-bottom: none;
+  }
+  
+  /* Class Cards */
+  .class-card {
+    padding: 0.8rem;
+  }
+  
+  .class-time {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  .schedule-table {
+    min-width: 700px;
+  }
+}
+
+/* Utility Classes */
+.badge-lab {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.badge-room {
+  background-color: #6c757d;
+  color: white;
+}
+
+.badge-auditorium {
+  background-color: #6f42c1;
+  color: white;
+}
+
+.text-accent {
+  color: var(--accent-color);
+}
+
+.bg-light-custom {
+  background-color: var(--light-color);
+}
+
+.welcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.welcome-content {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.welcome-content h4 {
+  color: #046144;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3rem;
+}
+

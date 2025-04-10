@@ -1,0 +1,458 @@
+{% load static %}
+{% load custom_filters%}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema - Turma CC 2025</title>
+  <link rel="shortcut icon" href="{% static 'img/lider-do-time.png' %}" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+  <div id="welcome-message" class="welcome-overlay">
+    <div class="welcome-content">
+        <div class="spinner-border text-success" role="status"></div>
+        <h4 class="mt-3">Bem-vindo, <span id="student-name">{{ usuario.nome }}</span>!</h4>
+    </div>
+  </div>
+  <!-- Navbarzinho -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-laptop-code me-2"></i>Turma CC 2025
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home"><i class="fas fa-home me-1"></i> Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#horarios"><i class="fas fa-calendar-alt me-1"></i> Horários</a></li>
+          <li class="nav-item"><a class="nav-link" href="#materiais"><i class="fas fa-book me-1"></i> Materiais</a></li>
+          <li class="nav-item"><a class="nav-link" href="#avisos"><i class="fas fa-bullhorn me-1"></i> Avisos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#provas"><i class="fas fa-clipboard-list me-1"></i> Provas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato"><i class="fas fa-envelope me-1"></i> Contato</a></li>
+        </ul>
+        <div class="d-flex">
+          <a href="{% url 'logout' %}" class="btn btn-outline-light me-2">
+            <i class="fas fa-sign-out-alt me-1"></i>Sair
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!--Conteúdos do header safadinho-->
+  <header id="home" class="py-5 bg-light">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 hero-text">
+          <h1 class="display-4 fw-bold mb-3">Bem-vindo ao Sistema da Turma</h1>
+          <p class="lead mb-4">Todas as informações acadêmicas da turma de Ciência da Computação 2025 em um único lugar.</p>
+          <p class="lead mb-4"><strong>Lideres:</strong> Gabriela Gonçalves | Pablo Henrique</p>
+        </div>
+        <div class="col-md-6 d-none d-md-block">
+          <img src="{% static 'img/capa.jpeg' %}" alt="Turma CC 2025" class="img-fluid rounded shadow">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container py-5">
+    <!-- Dashboardzinho -->
+  <div class="row mb-5">
+    <div class="col-6 col-md-3 mb-3">
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-subtitle mb-2">Disciplinas</h6>
+              <h2 class="card-title mb-0">{{ total_disciplinas }}</h2>
+            </div>
+            <i class="fas fa-book fa-3x opacity-50"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3 mb-3">
+      <div class="card text-white bg-success mb-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-subtitle mb-2">Alunos</h6>
+              <h2 class="card-title mb-0">{{ total_alunos }}</h2>
+            </div>
+            <i class="fas fa-users fa-3x opacity-50"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3 mb-3">
+      <div class="card text-white bg-warning mb-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-subtitle mb-2">Provas</h6>
+              <h2 class="card-title mb-0">{{ total_provas }}</h2>
+            </div>
+            <i class="fas fa-clipboard-list fa-3x opacity-50"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="col-6 col-md-3 mb-3">
+    <div class="card text-white bg-danger mb-3">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="card-subtitle mb-2">Tarefas</h6>
+            <h2 class="card-title mb-0">{{ total_tarefas }}</h2>
+          </div>
+          <i class="fas fa-tasks fa-3x opacity-50"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <!--Horários não confiaveis -->
+    <section id="horarios" class="mb-5">
+      <h2 class="section-title mb-4">Quadro de Horários</h2>
+      <div class="schedule-container">
+        <div class="table-responsive">
+          <table class="schedule-table">
+            <thead class="schedule-header">
+              <tr>
+                {% for dia, nome in dias_nomes %}
+                  <th class="day-header">{{ nome }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="schedule-row">
+                {% for dia, nome in dias_nomes %}
+                  <td class="day-column" data-label="{{ nome }}">
+                    <div class="classes-wrapper">
+                      {% for aula in aulas_por_dia|get_item:dia %}
+                        <div class="class-card">
+                          <div class="class-header">
+                            <h5 class="class-title mb-1">{{ aula.disciplina }}</h5>
+                            <p class="class-teacher text-muted mb-2">
+                              <i class="fas fa-chalkboard-teacher me-1"></i>Prof. {{ aula.professor }}
+                            </p>
+                          </div>
+                          
+                          <div class="class-details">
+                            <div class="class-time">
+                              <i class="fas fa-clock me-1"></i>
+                              <span>{{ aula.hora_inicio|time:"H:i" }} - {{ aula.hora_fim|time:"H:i" }}</span>
+                            </div>
+                            <div class="class-location">
+                              <span class="badge bg-{{ aula.cor_sala }}">
+                                <i class="fas fa-door-open me-1"></i>
+                                {{ aula.sala }}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {% if not forloop.last %}
+                          <div class="class-divider"></div>
+                        {% endif %}
+                      {% empty %}
+                        <div class="no-classes">
+                          <i class="far fa-calendar-times me-2"></i>
+                          <span>Nenhuma aula</span>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </td>
+                {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Materiais inúteis-->
+    <div class="row mb-5">
+      <div class="col-lg-6">
+        <section id="materiais">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="mb-0"><i class="fas fa-book me-2"></i>Materiais</h3>
+            </div>
+            <div class="card-body">
+              <div class="list-group">
+                {% for material in materiais %}
+                <a href="{{ material.arquivo.url }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                  <div>
+                    <i class="fas fa-file-{{ material.tipo|lower }} me-2"></i>
+                    <span class="fw-bold">{{ material.disciplina }}</span> - {{ material.titulo }}
+                  </div>
+                  {% if material.is_novo %}
+                  <span class="badge bg-primary rounded-pill">Novo</span>
+                  {% endif %}
+                </a>
+                {% empty %}
+                <div class="alert alert-info">Nenhum material disponível.</div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      <!-- Avisos não importantes kkkk -->
+      <div class="col-lg-6">
+        <section id="avisos">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="mb-0"><i class="fas fa-bullhorn me-2"></i>Avisos Importantes</h3>
+            </div>
+        
+            <div class="card-body">
+              {% if aviso_destaque %}
+              <div class="alert alert-warning alert-important d-flex align-items-center">
+                <i class="fas {{ aviso_destaque.icone }} fa-2x me-3"></i>
+                <div>
+                  <h5 class="alert-heading">{{ aviso_destaque.titulo }}</h5>
+                  {{ aviso_destaque.mensagem }}
+                </div>
+              </div>
+              {% endif %}
+        
+              <div class="list-group">
+                {% for aviso in avisos %}
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h6 class="mb-1 fw-bold">
+                      <i class="fas {{ aviso.icone }} me-2"></i>{{ aviso.titulo }}
+                    </h6>
+                    <small class="text-muted">{{ aviso.data_publicacao|timesince }} atrás</small>
+                  </div>
+                  <p class="mb-1">{{ aviso.mensagem }}</p>
+                </a>
+                {% empty %}
+                <div class="alert alert-info">Nenhum aviso disponível.</div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+
+  <!-- Provas da vida -->
+    <div class="row mb-5">
+      <div class="col-lg-8">
+        <section id="provas">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="mb-0">
+                <i class="fas fa-clipboard-list me-2"></i>Calendário de Provas e Trabalhos
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Disciplina</th>
+                      <th>Tipo</th>
+                      <th>Data</th>
+                      <th>Horário</th>
+                      <th>Local</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for evento in eventos %}
+                      <tr>
+                        <td class="fw-bold">{{ evento.disciplina }}</td>
+                        <td>
+                          {% with tipo=evento.tipo|lower %}
+                            {% if "prova" in tipo %}
+                              <span class="badge bg-primary">Prova</span>
+                            {% elif "trabalho" in tipo %}
+                              <span class="badge bg-success">Trabalho</span>
+                            {% elif "projeto" in tipo %}
+                              <span class="badge bg-warning text-dark">Projeto</span>
+                            {% elif "apresentacao" in tipo or "apresentação" in tipo %}
+                              <span class="badge bg-info text-dark">Apresentação</span>
+                            {% else %}
+                              <span class="badge bg-secondary">{{ evento.tipo }}</span>
+                            {% endif %}
+                          {% endwith %}
+                        </td>
+                        <td>{{ evento.data|date:"d/m/Y" }}</td>
+                        <td>{{ evento.horario|time:"H:i" }}</td>
+                        <td>{{ evento.local }}</td>
+                        <td>
+                          <button class="btn btn-sm btn-outline-primary" title="Adicionar ao Calendário">
+                            <i class="fas fa-calendar-plus"></i>
+                          </button>
+                          <button class="btn btn-sm btn-outline-info" title="Mais Informações">
+                            <i class="fas fa-info-circle"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    {% empty %}
+                      <tr>
+                        <td colspan="6" class="text-center">Nenhum evento acadêmico encontrado.</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <div class="text-end mt-3">
+                <a href="#" class="btn btn-primary">Exportar Calendário</a>
+              </div>
+            </div>
+          </div>
+        </section>
+            
+      </div>
+      
+      <!-- Eventos rsrs -->
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="mb-0"><i class="fas fa-calendar-day me-2"></i>Próximos Eventos</h3>
+          </div>
+          <div class="card-body">
+            <div class="event-calendar">
+              {% for evento in eventos_gerais %}
+              <div class="event-item mb-3">
+                <div class="d-flex justify-content-between">
+                  <h5 class="mb-1 fw-bold">{{ evento.titulo }}</h5>
+                  {% if evento.tipo == 'EVENTO' %}
+                    <span class="badge bg-success">Evento</span>
+                  {% elif evento.tipo == 'PALESTRA' %}
+                    <span class="badge bg-info">Palestra</span>
+                  {% elif evento.tipo == 'COMPETICAO' %}
+                    <span class="badge bg-warning text-dark">Competição</span>
+                  {% elif evento.tipo == 'REUNIAO' %}
+                    <span class="badge bg-primary">Reunião</span>
+                  {% else %}
+                    <span class="badge bg-secondary">Outro</span>
+                  {% endif %}
+                </div>
+                <p class="mb-1">
+                  <i class="fas fa-calendar-alt me-2"></i>
+                  {% if evento.data_fim %}
+                    {{ evento.data_inicio|date:"d/m" }} - {{ evento.data_fim|date:"d/m" }}
+                  {% else %}
+                    {{ evento.data_inicio|date:"d/m" }}{% if evento.horario %} - {{ evento.horario|time:"H:i" }}{% endif %}
+                  {% endif %}
+                </p>
+                <p class="mb-0">
+                  <i class="fas fa-map-marker-alt me-2"></i>{{ evento.local }}
+                </p>
+              </div>
+              {% empty %}
+              <p class="text-muted">Nenhum evento institucional disponível.</p>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contatinhos -->
+    <section id="contato" class="mb-5">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="mb-0"><i class="fas fa-envelope me-2"></i>Contato dos Professores</h3>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Disciplina</th>
+                  <th>Professor</th>
+                  <th>E-mail</th>
+                  <th>Atendimento</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for contato in contatos %}
+                  <tr>
+                    <td class="fw-bold">{{ contato.disciplina }}</td>
+                    <td>{{ contato.nome_professor }}</td>
+                    <td>{{ contato.email }}</td>
+                    <td>{{ contato.horario_atendimento }}</td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan="4" class="text-center">Nenhum contato cadastrado.</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>    
+  </div>
+
+  <!-- Roda pé de muléqui -->
+  <footer class="bg-dark text-white py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="mb-3">Desenvolvido por Rafael Góes</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/rafaelgoesti/" class="text-white me-3" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/rafaelgoesti" class="text-white me-3" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/rafael-g%C3%B3es-duarte-10709332a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="text-white" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+    document.querySelector('.current-year').textContent = new Date().getFullYear();
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    if (document.cookie.includes('mostrar_boas_vindas=true')) {
+        const welcomeMessage = document.getElementById('welcome-message');
+        
+        if (welcomeMessage) {
+            welcomeMessage.style.opacity = '1';
+            setTimeout(() => {
+                welcomeMessage.style.opacity = '0';
+                setTimeout(() => {
+                    welcomeMessage.style.display = 'none';
+                }, 500);
+            }, 3000);
+        }
+        document.cookie = 'mostrar_boas_vindas=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    }
+});
+</script>
+</body>
+</html>
