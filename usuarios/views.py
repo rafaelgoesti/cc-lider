@@ -9,9 +9,9 @@ def login(request):
         try:
             usuario = Usuarios.objects.get(matricula=matricula)
             request.session['usuario_id'] = usuario.id
-            request.session['usuario_nome'] = usuario.nome  # Armazena o nome na sessão
+            request.session['usuario_nome'] = usuario.nome
             response = redirect('home')
-            response.set_cookie('mostrar_boas_vindas', 'true', max_age=5)  # Cookie que expira em 5 segundos
+            response.set_cookie('mostrar_boas_vindas', 'true', max_age=5)
             return response
         except Usuarios.DoesNotExist:
             return render(request, 'login.html', {'mensagem': "Matrícula não encontrada."})

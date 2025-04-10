@@ -4,6 +4,7 @@ Django==5.2
 gunicorn==23.0.0
 mysqlclient==2.2.7
 packaging==24.2
+psycopg2-binary==2.9.10
 python-decouple==3.8
 python-dotenv==1.1.0
 sqlparse==0.5.3
