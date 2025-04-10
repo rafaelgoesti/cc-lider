@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import Usuarios, Aula, Material, Aviso, EventoAcademico, EventoGeral, ContatoProfessor
 
+admin.site.site_header = "Ciência da Computação - 2025"
+admin.site.site_title = "Administração CC"
+admin.site.index_title = "Lideres: Gabriela Gonçalves | Pablo Henrique"
+
 @admin.register(Usuarios)
 class UsuariosAdmin(admin.ModelAdmin):
     list_display = ('matricula', 'nome')

@@ -1,8 +1,20 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import sys
+if 'runserver' not in sys.argv:
+    try:
+        import pymysql
+        pymysql.install_as_MySQLdb()
+    except:
+        pass
 
 load_dotenv()
+#CSRF_TRUSTED_ORIGINS = ['https://lider-cc.fly.dev']
+CSRF_TRUSTED_ORIGINS = [
+    'https://lider-cc.fly.dev',
+    'http://localhost:8000',
+]
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -13,7 +25,7 @@ import os
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -127,4 +139,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['turmacc-2de5e62f8a63.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['lider-cc.fly.dev', 'localhost']
